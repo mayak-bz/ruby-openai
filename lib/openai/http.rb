@@ -63,7 +63,7 @@ module OpenAI
     end
 
     def conn(multipart: false)
-      Faraday.new(proxy: ENV.fetch("OPENAI_PROXY_URL")) do |f|
+      Faraday.new(proxy: ENV.fetch("OPENAI_PROXY_URL", "")) do |f|
         f.options[:timeout] = OpenAI.configuration.request_timeout
         f.request(:multipart) if multipart
       end
